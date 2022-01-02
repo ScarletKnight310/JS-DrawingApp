@@ -7,8 +7,10 @@ const ctx = canvas.getContext("2d")
 let prevX = null
 let prevY = null
 
-ctx.lineWidth = 5
+ctx.lineWidth=5
+ctx.globalAlpha=1
 document.getElementById("thick").value = ctx.lineWidth
+document.getElementById("opacity").value = ctx.globalAlpha
 let draw = false
 
 // Draw Actions
@@ -47,8 +49,13 @@ clrs.forEach(clr => {
 //---- Brush Thickness
 let thickBtn = document.querySelector(".thickBtn")
 thickBtn.addEventListener("click", () => {
-    let thickness = document.getElementById("thick").value
-    ctx.lineWidth = thickness
+    ctx.lineWidth = document.getElementById("thick").value
+})
+
+//---- Brush Opacity
+let opaBtn = document.querySelector(".opaBtn")
+opaBtn.addEventListener("click", function(){
+    ctx.globalAlpha = document.getElementById("opacity").value
 })
 
 //---- Clear
@@ -67,4 +74,3 @@ saveBtn.addEventListener("click", () => {
     a.download = "sketch.png"
     a.click()
 })
-
